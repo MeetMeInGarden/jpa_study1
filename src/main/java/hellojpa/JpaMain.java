@@ -21,9 +21,9 @@ public class JpaMain {
         // 실제 비즈니스 code 작성
         try {
             // ============= 시작 1. INSERT =============
-            // Member member = new Member();
-            // member.setId(2L);
-            // member.setName("HelloB");
+//             Member member = new Member();
+//             member.setId(2L);
+//             member.setName("HelloB");
 
             // INSERT 실행
             // em.persist(member);
@@ -31,9 +31,9 @@ public class JpaMain {
 
             // ============= 시작 2. 회원 단 건 조회 & UPDATE =============
             // 단 건 조회
-//            Member findMember = em.find(Member.class, 2L); // 2L = PK
-//            System.out.println("findMember = " + findMember.getId());
-//            System.out.println("findMember = " + findMember.getName());
+            // Member findMember = em.find(Member.class, 2L); // 2L = PK
+            // System.out.println("findMember = " + findMember.getId());
+            // System.out.println("findMember = " + findMember.getName());
 
             // UPDATE
 //            findMember.setName(findMember.getName() + " 수정한 이름");
@@ -57,7 +57,7 @@ public class JpaMain {
 
             // ============= commit =============
             // 비즈니스 로직이 정상적으로 완료 되면 트랜잭션 커밋
-            // tx.commit();
+             tx.commit();
             // ============= commit =============
 
 // =================================================================================================================================================================
@@ -65,11 +65,11 @@ public class JpaMain {
 // =================================================================================================================================================================
             // ============= 시작 1. JPQL로 전체 회원 검색 =============
             // 대상이 table 이 아니라 객체(Entity)이다.
-            List<Member> findMembers = em.createQuery("select m from Member as m", Member.class)
-                                         .getResultList();
-            for (Member member : findMembers) {
-                System.out.println("member.id = " + member.getId() + ", member.name = " + member.getName());
-            }
+//            List<Member> findMembers = em.createQuery("select m from Member as m", Member.class)
+//                                         .getResultList();
+//            for (Member member : findMembers) {
+//                System.out.println("member.id = " + member.getId() + ", member.name = " + member.getName());
+//            }
 
             // WHERE 절도 넣을 수 있다.
             // List<Member> findMembers = em.createQuery("select m from Member as m where m.name = xxxx", Member.class).getResultList();
@@ -78,13 +78,13 @@ public class JpaMain {
             // ============= 시작 2. JPQL로 페이징 =============
             // 예를 들어 DB를 H2에서 Oracle로 바꿔도 아래 코드는 일절 수정할 필요가 없다.
             // JPA 가 알아서 dialect 를 맞춰서 쿼리를 날려준다.(매우 편리, persistence.xml 에서 dialect 설정만 바꿔주면 된다.)
-            List<Member> findMembers2 = em.createQuery("select m from Member as m", Member.class)
-                                        .setFirstResult(0)
-                                        .setMaxResults(10) // 0번 부터 10개 가져와, .setFirstResult(5).setMaxResults(8) ==> 5번 부터 8개 가져와
-                                        .getResultList();
-            for (Member member2 : findMembers2) {
-                System.out.println("member2.id = " + member2.getId() + ", member2.name = " + member2.getName());
-            }
+//            List<Member> findMembers2 = em.createQuery("select m from Member as m", Member.class)
+//                                        .setFirstResult(0)
+//                                        .setMaxResults(10) // 0번 부터 10개 가져와, .setFirstResult(5).setMaxResults(8) ==> 5번 부터 8개 가져와
+//                                        .getResultList();
+//            for (Member member2 : findMembers2) {
+//                System.out.println("member2.id = " + member2.getId() + ", member2.name = " + member2.getName());
+//            }
             // ============= 끝 2. JPQL로 페이징 =============
         } catch (Exception e) {
             tx.rollback(); // Exception 발생 시 트랜잭션 롤백

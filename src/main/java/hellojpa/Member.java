@@ -1,33 +1,22 @@
 package hellojpa;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
-@Entity
-@Table(name = "MEMBER")
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
+
+@Entity(name = "Member")
 public class Member {
-    @Id
+    @Id // PK 매핑
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "NAME")
-    private String name;
 
-    public Long getId() {
-        return id;
-    }
+    @Column(name = "name", columnDefinition = "varchar(100) default 'EMPTY'") // DB 컬럼명 지정
+    private String username;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    public Member() {}
 }
 /*
 create table Member (
